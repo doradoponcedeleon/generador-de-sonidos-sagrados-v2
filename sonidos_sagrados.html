@@ -171,65 +171,13 @@
       text-transform: uppercase;
     }
 
-    .mantras.hidden { display: none; }
-    .mantras {
-      margin-top: 16px;
-      padding: 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(6, 8, 12, 0.8);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      color: #eaeaea;
-    }
-    .mantras h2 { margin: 0 0 10px; font-size: 18px; }
-    .mantras .grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
-    @media (min-width: 900px) { .mantras .grid { grid-template-columns: 1.2fr 0.8fr; } }
-    .mantras .card {
-      background: #111114; border: 1px solid #1f1f26;
-      border-radius: 14px; padding: 14px;
-    }
-    .mantras .row { margin: 10px 0; display: grid; gap: 8px; }
-    .mantras .row.two { grid-template-columns: 1fr 1fr; }
-    .mantras label { font-size: 13px; opacity: 0.85; }
-    .mantras input, .mantras select, .mantras button {
-      width: 100%; border-radius: 12px; border: 1px solid #2a2a33;
-      background: #0f0f13; color: #eaeaea; padding: 10px 12px;
-    }
-    .mantras input[type="range"] { padding: 0; height: 38px; }
-    .mantras button { cursor: pointer; font-weight: 650; }
-    .mantras .primary { background: #1b2a44; border-color: #263a5e; }
-    .mantras .danger { background: #3a171a; border-color: #5a2328; }
-    .mantras button:disabled { opacity: 0.5; cursor: not-allowed; }
-    .mantras .list { display: grid; gap: 8px; margin-top: 10px; }
-    .mantras .item {
-      padding: 10px 12px; border-radius: 12px; border: 1px solid #262631;
-      background: #0d0d11;
-    }
-    .mantras .item .top { display: flex; justify-content: space-between; gap: 10px; }
-    .mantras .item .name { font-weight: 700; }
-    .mantras .badge {
-      font-size: 12px; padding: 4px 8px; border-radius: 999px;
-      border: 1px solid #2b2b36; opacity: 0.9;
-    }
-    .mantras .meta { margin-top: 6px; font-size: 12px; opacity: 0.75; }
-    .mantras .now {
-      padding: 10px 12px; border: 1px dashed #2b2b36; border-radius: 12px;
-      background: #0c0c10; opacity: 0.9;
-    }
-    .mantras .hint { font-size: 12px; opacity: 0.7; margin-top: 4px; }
-    .mantras .syllables { margin-top: 12px; }
-    .mantras .syllables .label { font-size: 13px; opacity: 0.8; margin-bottom: 8px; }
-    .mantras .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-    .mantras .chip {
-      padding: 8px 10px; border-radius: 999px; border: 1px solid #2a2a33;
-      background: #0f0f13; font-size: 13px;
-    }
-    .mantras .chip.active { outline: 2px solid #3a4f7a; }
-    .mantras .footerNote { margin-top: 12px; font-size: 12px; opacity: 0.7; }
   </style>
 </head>
 <body>
   <main class="shell">
+    <div id="build-tag" style="position:fixed; top:10px; right:10px; z-index:9999; font-size:12px; padding:6px 8px; border-radius:8px; background:#1a1f2a; border:1px solid rgba(255,255,255,0.2); color:#cfe3ff;">
+      build: mantras-debug-1
+    </div>
     <section class="panel">
       <h1>Sonidos sagrados</h1>
 
@@ -241,9 +189,9 @@
           <button class="btn" data-instrument="bowl">Cuenco</button>
           <button class="btn" data-instrument="gong">Gong</button>
           <button class="btn" data-instrument="tibet-horn">Dungchen</button>
-          <button class="btn" data-instrument="mantras">Mantras</button>
         </div>
       </div>
+      <a class="nav-link" href="mantras.html">Ir a Mantras</a>
 
       <div class="control">
         <label>Intensidad: <span id="amp-value">0.45</span></label>
@@ -306,101 +254,6 @@
       <p id="wave-hint" class="hint">La onda muestra la suma de armónicos con la envolvente del instrumento seleccionado.</p>
       <a class="nav-link" href="index.html">Volver al generador principal</a>
 
-      <div id="mantras-panel" class="mantras hidden">
-        <h2>Mantras</h2>
-        <div class="grid">
-          <section class="card">
-            <h2>Biblioteca</h2>
-
-            <div class="row">
-              <label>Buscar</label>
-              <input id="m-q" placeholder="OM, Gayatri, compasión..." />
-            </div>
-
-            <div class="row two">
-              <div>
-                <label>Modo</label>
-                <select id="m-modo">
-                  <option value="">(Todos)</option>
-                  <option value="meditacion_profunda">Meditación profunda</option>
-                  <option value="enfoque">Enfoque</option>
-                  <option value="compasion">Compasión</option>
-                  <option value="proteccion">Protección</option>
-                  <option value="purificacion">Purificación</option>
-                  <option value="gratitud">Gratitud</option>
-                  <option value="sueno">Sueño</option>
-                  <option value="energia">Energía</option>
-                </select>
-              </div>
-
-              <div>
-                <label>Categoría</label>
-                <select id="m-cat">
-                  <option value="">(Todas)</option>
-                  <option value="grave">Grave</option>
-                  <option value="media">Media</option>
-                  <option value="aguda">Aguda</option>
-                </select>
-              </div>
-            </div>
-
-            <div id="m-list" class="list"></div>
-          </section>
-
-          <section class="card">
-            <h2>Reproductor</h2>
-
-            <div id="m-now" class="now">Selecciona un mantra…</div>
-
-            <div class="row two">
-              <div>
-                <label>Dron (Hz)</label>
-                <input id="m-dronHz" type="number" step="0.01" min="20" max="500" value="136.10" />
-              </div>
-              <div>
-                <label>BPM</label>
-                <input id="m-bpm" type="number" step="1" min="10" max="180" value="42" />
-              </div>
-            </div>
-
-            <div class="row two">
-              <div>
-                <label>Volumen dron</label>
-                <input id="m-dronVol" type="range" min="0" max="1" step="0.01" value="0.75" />
-              </div>
-              <div>
-                <label>Volumen guía</label>
-                <input id="m-pulseVol" type="range" min="0" max="1" step="0.01" value="0.45" />
-              </div>
-            </div>
-
-            <div class="row two">
-              <div>
-                <label><input id="m-binauralOn" type="checkbox" checked /> Binaural</label>
-                <div class="hint">Usa audífonos para sentirlo.</div>
-              </div>
-              <div>
-                <label>Δ binaural (Hz)</label>
-                <input id="m-delta" type="number" step="0.1" min="0" max="40" value="6.0" />
-              </div>
-            </div>
-
-            <div class="row two">
-              <button id="m-play" class="primary">▶ Iniciar</button>
-              <button id="m-stop" class="danger" disabled>■ Detener</button>
-            </div>
-
-            <div class="syllables">
-              <div class="label">Sílabas</div>
-              <div id="m-syll" class="chips"></div>
-            </div>
-
-            <div class="footerNote">
-              Si el audio no arranca: toca “Iniciar” otra vez (Android a veces bloquea la primera activación).
-            </div>
-          </section>
-        </div>
-      </div>
     </section>
   </main>
 
@@ -451,8 +304,7 @@
       flute: "Flauta",
       bowl: "Cuenco",
       gong: "Gong",
-      "tibet-horn": "Dungchen",
-      "mantras": "Mantras"
+      "tibet-horn": "Dungchen"
     };
 
 
@@ -579,22 +431,9 @@
 
     function updateInstrument() {
       ui.readInst.textContent = labels[audioState.instrument];
-      toggleMantrasUI();
-      if (audioState.running && audioState.instrument !== "mantras") {
+      if (audioState.running) {
         stopSound(true);
         startSound();
-      }
-    }
-
-    function toggleMantrasUI() {
-      const isMantras = audioState.instrument === "mantras";
-      ui.mantrasPanel.classList.toggle("hidden", !isMantras);
-      ui.canvas.style.display = isMantras ? "none" : "block";
-      ui.waveHint.style.display = isMantras ? "none" : "block";
-      if (isMantras) {
-        stopSound(true);
-      } else if (typeof mStopEngine === "function") {
-        mStopEngine(true);
       }
     }
 
@@ -639,7 +478,6 @@
 
     function startSound() {
       ensureAudio();
-      if (audioState.instrument === "mantras") return;
       if (audioState.running) return;
 
       const ctx = audioState.ctx;
@@ -949,274 +787,7 @@
 
     ui.stop.addEventListener("click", stopSound);
 
-    // Mantras (embebido)
-    let mMantras = [];
-    let mSelected = null;
-
-    let mCtx = null;
-    let mMaster = null;
-    let mDronOsc = null;
-    let mHarmOsc = null;
-    let mDronGain = null;
-    let mBinOscL = null;
-    let mBinOscR = null;
-    let mBinGainL = null;
-    let mBinGainR = null;
-    let mPulseGain = null;
-    let mTimer = null;
-    let mSyllIndex = 0;
-    let mRunning = false;
-
-    const m$ = (id) => document.getElementById(`m-${id}`);
-
-    async function mLoadMantras() {
-      try {
-        const res = await fetch("mantras.json", { cache: "no-store" });
-        mMantras = await res.json();
-        mRenderList();
-      } catch (err) {
-        const list = m$("list");
-        if (list) list.innerHTML = `<div class="meta">No se pudo cargar mantras.json</div>`;
-      }
-    }
-
-    function mNormalize(s) {
-      return (s || "")
-        .toString()
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/\p{Diacritic}/gu, "");
-    }
-
-    function mRenderList() {
-      const q = mNormalize(m$("q").value);
-      const modo = m$("modo").value;
-      const cat = m$("cat").value;
-
-      const list = m$("list");
-      list.innerHTML = "";
-
-      const filtered = mMantras.filter(m => {
-        const text = mNormalize([m.nombre, m.tradicion, (m.intencion||[]).join(" "), (m.silabas||[]).join(" ")].join(" "));
-        const okQ = !q || text.includes(q);
-        const okM = !modo || m.modo === modo;
-        const okC = !cat || m.categoria_frecuencia === cat;
-        return okQ && okM && okC;
-      });
-
-      for (const m of filtered) {
-        const div = document.createElement("div");
-        div.className = "item";
-        div.innerHTML = `
-          <div class="top">
-            <div class="name">${m.nombre}</div>
-            <div class="badge">${m.modo || "—"}</div>
-          </div>
-          <div class="meta">
-            dron: <b>${Number(m.dron_hz).toFixed(2)} Hz</b> · bpm: <b>${m.bpm}</b> · sílabas: <b>${(m.silabas||[]).length}</b>
-          </div>
-        `;
-        div.addEventListener("click", () => mSelectMantra(m));
-        list.appendChild(div);
-      }
-
-      if (!filtered.length) {
-        list.innerHTML = `<div class="meta">No hay resultados.</div>`;
-      } else if (!mSelected) {
-        mSelectMantra(filtered[0]);
-      }
-    }
-
-    function mSelectMantra(m) {
-      mSelected = m;
-      m$("now").textContent = `${m.nombre} — dron ${Number(m.dron_hz).toFixed(2)} Hz · bpm ${m.bpm}`;
-      m$("dronHz").value = Number(m.dron_hz).toFixed(2);
-      m$("bpm").value = m.bpm;
-
-      const b = m.binaural || {};
-      m$("binauralOn").checked = !!b.activo;
-      m$("delta").value = (b.delta_hz ?? 6.0);
-
-      mRenderSyllables(m.silabas || []);
-    }
-
-    function mRenderSyllables(sylls) {
-      const container = m$("syll");
-      container.innerHTML = "";
-      for (let i = 0; i < sylls.length; i++) {
-        const chip = document.createElement("div");
-        chip.className = "chip";
-        chip.textContent = sylls[i];
-        chip.dataset.i = String(i);
-        container.appendChild(chip);
-      }
-    }
-
-    function mSetActiveSyllable(i) {
-      const chips = m$("syll").querySelectorAll(".chip");
-      chips.forEach(c => c.classList.remove("active"));
-      const hit = m$("syll").querySelector(`.chip[data-i=\"${i}\"]`);
-      if (hit) hit.classList.add("active");
-    }
-
-    function mEnsureAudio() {
-      if (mCtx) return;
-
-      mCtx = audioState.ctx || new (window.AudioContext || window.webkitAudioContext)();
-      mMaster = mCtx.createGain();
-      mMaster.gain.value = 1.4;
-      mMaster.connect(mCtx.destination);
-
-      mDronGain = mCtx.createGain();
-      mDronGain.gain.value = Number(m$("dronVol").value) || 0.75;
-      mDronGain.connect(mMaster);
-
-      mPulseGain = mCtx.createGain();
-      mPulseGain.gain.value = Number(m$("pulseVol").value) || 0.45;
-      mPulseGain.connect(mMaster);
-    }
-
-    async function mStartEngine() {
-      if (!mSelected) {
-        m$("now").textContent = "Selecciona un mantra primero…";
-        return;
-      }
-
-      mEnsureAudio();
-      if (mCtx.state === "suspended") {
-        await mCtx.resume();
-      }
-      mStopEngine(true);
-
-      const dronHz = Number(m$("dronHz").value);
-      const bpm = Number(m$("bpm").value);
-      const binauralOn = m$("binauralOn").checked;
-      const delta = Number(m$("delta").value);
-      if (mDronGain) mDronGain.gain.value = Number(m$("dronVol").value) || 0.75;
-      if (mPulseGain) mPulseGain.gain.value = Number(m$("pulseVol").value) || 0.45;
-
-      mDronOsc = mCtx.createOscillator();
-      mDronOsc.type = "sine";
-      mDronOsc.frequency.value = dronHz;
-
-      mHarmOsc = mCtx.createOscillator();
-      mHarmOsc.type = "sine";
-      mHarmOsc.frequency.value = dronHz * 2;
-
-      const harmGain = mCtx.createGain();
-      harmGain.gain.value = 0.2;
-
-      mDronOsc.connect(mDronGain);
-      mHarmOsc.connect(harmGain);
-      harmGain.connect(mDronGain);
-
-      if (binauralOn && delta > 0) {
-        const fc = (mSelected.binaural?.portadora_hz ?? 200);
-        const mix = (mSelected.binaural?.mix ?? 0.06);
-
-        mBinOscL = mCtx.createOscillator();
-        mBinOscR = mCtx.createOscillator();
-        mBinOscL.type = "sine";
-        mBinOscR.type = "sine";
-        mBinOscL.frequency.value = fc + (delta / 2);
-        mBinOscR.frequency.value = fc - (delta / 2);
-
-        mBinGainL = mCtx.createGain();
-        mBinGainR = mCtx.createGain();
-        mBinGainL.gain.value = mix;
-        mBinGainR.gain.value = mix;
-
-        const panL = mCtx.createStereoPanner();
-        const panR = mCtx.createStereoPanner();
-        panL.pan.value = -1;
-        panR.pan.value =  1;
-
-        mBinOscL.connect(mBinGainL); mBinGainL.connect(panL); panL.connect(mMaster);
-        mBinOscR.connect(mBinGainR); mBinGainR.connect(panR); panR.connect(mMaster);
-      }
-
-      mDronOsc.start();
-      mHarmOsc.start();
-      if (mBinOscL) mBinOscL.start();
-      if (mBinOscR) mBinOscR.start();
-
-      const sylls = mSelected.silabas || [];
-      mSyllIndex = 0;
-      const intervalMs = Math.max(250, Math.round((60_000 / Math.max(10, bpm))));
-      mRunning = true;
-
-      const tick = () => {
-        if (!mRunning) return;
-
-        if (sylls.length) {
-          mSetActiveSyllable(mSyllIndex);
-          mSyllIndex = (mSyllIndex + 1) % sylls.length;
-        }
-
-        const osc = mCtx.createOscillator();
-        osc.type = "triangle";
-        osc.frequency.value = dronHz * 1.5;
-
-        const g = mCtx.createGain();
-        g.gain.value = 0.0001;
-        osc.connect(g);
-        g.connect(mPulseGain);
-
-        const t0 = mCtx.currentTime;
-        g.gain.setValueAtTime(0.0001, t0);
-        g.gain.exponentialRampToValueAtTime(Math.max(0.001, Number(m$("pulseVol").value)), t0 + 0.01);
-        g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.12);
-
-        osc.start(t0);
-        osc.stop(t0 + 0.14);
-      };
-
-      tick();
-      mTimer = setInterval(tick, intervalMs);
-
-      m$("play").disabled = true;
-      m$("stop").disabled = false;
-    }
-
-    function mStopEngine(silent = false) {
-      mRunning = false;
-      if (mTimer) { clearInterval(mTimer); mTimer = null; }
-      mSetActiveSyllable(-1);
-
-      const stopNode = (node) => { try { node && node.stop && node.stop(); } catch {} };
-      const disconnect = (node) => { try { node && node.disconnect && node.disconnect(); } catch {} };
-
-      stopNode(mDronOsc); disconnect(mDronOsc); mDronOsc = null;
-      stopNode(mHarmOsc); disconnect(mHarmOsc); mHarmOsc = null;
-      stopNode(mBinOscL); disconnect(mBinOscL); mBinOscL = null;
-      stopNode(mBinOscR); disconnect(mBinOscR); mBinOscR = null;
-
-      if (!silent) {
-        m$("play").disabled = false;
-        m$("stop").disabled = true;
-      }
-    }
-
-    function mBindUI() {
-      m$("q").addEventListener("input", mRenderList);
-      m$("modo").addEventListener("change", mRenderList);
-      m$("cat").addEventListener("change", mRenderList);
-
-      m$("dronVol").addEventListener("input", () => {
-        if (mDronGain) mDronGain.gain.value = Number(m$("dronVol").value);
-      });
-      m$("pulseVol").addEventListener("input", () => {
-        if (mPulseGain) mPulseGain.gain.value = Number(m$("pulseVol").value);
-      });
-
-      m$("play").addEventListener("click", mStartEngine);
-      m$("stop").addEventListener("click", () => { mStopEngine(); });
-    }
-
-    mBindUI();
-    mLoadMantras();
-
-    updateToneLabels();
+        updateToneLabels();
     drawWaveform();
   </script>
 </body>

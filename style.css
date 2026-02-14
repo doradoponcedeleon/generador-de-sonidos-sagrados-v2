@@ -1,0 +1,58 @@
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background: #0b0b0c; color: #eaeaea;
+}
+header { padding: 18px 16px 6px; }
+h1 { margin: 0; font-size: 26px; letter-spacing: 0.2px; }
+.sub { margin: 6px 0 0; opacity: 0.75; }
+.grid {
+  display: grid; gap: 12px; padding: 12px; 
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px) { .grid { grid-template-columns: 1.2fr 0.8fr; } }
+.card {
+  background: #111114; border: 1px solid #1f1f26;
+  border-radius: 14px; padding: 14px;
+}
+h2 { margin: 0 0 10px; font-size: 18px; }
+.row { margin: 10px 0; display: grid; gap: 8px; }
+.row.two { grid-template-columns: 1fr 1fr; }
+label { font-size: 13px; opacity: 0.85; }
+input, select, button {
+  width: 100%; border-radius: 12px; border: 1px solid #2a2a33;
+  background: #0f0f13; color: #eaeaea; padding: 10px 12px;
+}
+input[type="range"] { padding: 0; height: 38px; }
+button { cursor: pointer; font-weight: 650; }
+.primary { background: #1b2a44; border-color: #263a5e; }
+.danger { background: #3a171a; border-color: #5a2328; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.list { display: grid; gap: 8px; margin-top: 10px; }
+.item {
+  padding: 10px 12px; border-radius: 12px; border: 1px solid #262631;
+  background: #0d0d11;
+}
+.item .top { display: flex; justify-content: space-between; gap: 10px; }
+.item .name { font-weight: 700; }
+.badge {
+  font-size: 12px; padding: 4px 8px; border-radius: 999px;
+  border: 1px solid #2b2b36; opacity: 0.9;
+}
+.meta { margin-top: 6px; font-size: 12px; opacity: 0.75; }
+.now {
+  padding: 10px 12px; border: 1px dashed #2b2b36; border-radius: 12px;
+  background: #0c0c10; opacity: 0.9;
+}
+.hint { font-size: 12px; opacity: 0.7; margin-top: 4px; }
+.syllables { margin-top: 12px; }
+.syllables .label { font-size: 13px; opacity: 0.8; margin-bottom: 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  padding: 8px 10px; border-radius: 999px; border: 1px solid #2a2a33;
+  background: #0f0f13; font-size: 13px;
+}
+.chip.active { outline: 2px solid #3a4f7a; }
+.footerNote { margin-top: 12px; font-size: 12px; opacity: 0.7; }
