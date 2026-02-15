@@ -6,6 +6,8 @@ let master = null;
 let masterHP = null;
 let masterLP = null;
 let masterComp = null;
+let bodyEQ = null;
+let formant = null;
 
 let dronOsc = null;
 let harmOsc = null;
@@ -110,7 +112,7 @@ function ensureAudio() {
 
   ctx = new (window.AudioContext || window.webkitAudioContext)();
   master = ctx.createGain();
-  master.gain.value = 1.0;
+  master.gain.value = 1.5;
 
   masterHP = ctx.createBiquadFilter();
   masterHP.type = "highpass";
@@ -131,7 +133,21 @@ function ensureAudio() {
 
   master.connect(masterHP);
   masterHP.connect(masterLP);
-  masterLP.connect(masterComp);
+
+  bodyEQ = ctx.createBiquadFilter();
+  bodyEQ.type = "peaking";
+  bodyEQ.frequency.value = 140;
+  bodyEQ.Q.value = 1.0;
+  bodyEQ.gain.value = 0;
+
+  formant = ctx.createBiquadFilter();
+  formant.type = "bandpass";
+  formant.frequency.value = 900;
+  formant.Q.value = 1.2;
+
+  masterLP.connect(bodyEQ);
+  bodyEQ.connect(formant);
+  formant.connect(masterComp);
   masterComp.connect(ctx.destination);
 
   dronGain = ctx.createGain();
@@ -141,6 +157,34 @@ function ensureAudio() {
   pulseGain = ctx.createGain();
   pulseGain.gain.value = Number($("pulseVol").value);
   pulseGain.connect(master);
+}
+
+function updateTimbreUI() {
+  $("harmSpecVal").textContent = $("harmSpec").value;
+  $("bodyResVal").textContent = $("bodyRes").value;
+  $("timeEnvVal").textContent = $("timeEnv").value;
+  $("articulVal").textContent = $("articul").value;
+}
+
+function applyTimbre() {
+  if (!ctx) return;
+  const harmSpec = Number($("harmSpec").value);
+  const bodyRes = Number($("bodyRes").value);
+  const timeEnv = Number($("timeEnv").value);
+  const articul = Number($("articul").value);
+
+  if (bodyEQ) {
+    const gain = (bodyRes - 3) * 2.5; // -5..+5 dB
+    bodyEQ.gain.value = gain;
+  }
+
+  if (formant) {
+    const formants = [600, 750, 900, 1100, 1400];
+    formant.frequency.value = formants[articul - 1] || 900;
+    formant.Q.value = 1.0 + (articul - 3) * 0.2;
+  }
+
+  return { harmSpec, timeEnv };
 }
 
 async function startEngine() {
@@ -161,6 +205,7 @@ async function startEngine() {
   const bpm = Number($("bpm").value);
   const binauralOn = $("binauralOn").checked;
   const delta = Number($("delta").value);
+  const timbre = applyTimbre() || { harmSpec: 3, timeEnv: 3 };
 
   dronOsc = ctx.createOscillator();
   dronOsc.type = "sine";
@@ -171,7 +216,7 @@ async function startEngine() {
   harmOsc.frequency.value = dronHz * 2;
 
   const harmGain = ctx.createGain();
-  harmGain.gain.value = 0.2;
+  harmGain.gain.value = 0.12 + (timbre.harmSpec - 1) * 0.04;
 
   dronOsc.connect(dronGain);
   harmOsc.connect(harmGain);
@@ -235,12 +280,15 @@ async function startEngine() {
     g.connect(pulseGain);
 
     const t0 = ctx.currentTime;
+    const env = timbre.timeEnv;
+    const attack = 0.006 + env * 0.004;
+    const decay = 0.08 + env * 0.02;
     g.gain.setValueAtTime(0.0001, t0);
-    g.gain.exponentialRampToValueAtTime(Math.max(0.001, Number($("pulseVol").value)), t0 + 0.01);
-    g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.12);
+    g.gain.exponentialRampToValueAtTime(Math.max(0.001, Number($("pulseVol").value)), t0 + attack);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + decay);
 
     osc.start(t0);
-    osc.stop(t0 + 0.14);
+    osc.stop(t0 + decay + 0.02);
   };
 
   tick();
@@ -280,6 +328,8 @@ async function stopEngine(silent = false) {
   if (masterHP) { try { masterHP.disconnect(); } catch {} }
   if (masterLP) { try { masterLP.disconnect(); } catch {} }
   if (masterComp) { try { masterComp.disconnect(); } catch {} }
+  if (bodyEQ) { try { bodyEQ.disconnect(); } catch {} }
+  if (formant) { try { formant.disconnect(); } catch {} }
 
   if (ctx) {
     const ctxToClose = ctx;
@@ -291,6 +341,8 @@ async function stopEngine(silent = false) {
     masterHP = null;
     masterLP = null;
     masterComp = null;
+    bodyEQ = null;
+    formant = null;
     dronGain = null;
     pulseGain = null;
   }
@@ -312,6 +364,12 @@ function bindUI() {
   $("pulseVol").addEventListener("input", () => {
     if (pulseGain) pulseGain.gain.value = Number($("pulseVol").value);
   });
+  ["harmSpec", "bodyRes", "timeEnv", "articul"].forEach((id) => {
+    $(id).addEventListener("input", () => {
+      updateTimbreUI();
+      applyTimbre();
+    });
+  });
 
   $("play").addEventListener("click", startEngine);
   $("stop").addEventListener("click", () => { stopEngine(); });
@@ -320,6 +378,7 @@ function bindUI() {
 }
 
 bindUI();
+updateTimbreUI();
 loadMantras();
 
 // Corte de emergencia si la página se oculta o cierra

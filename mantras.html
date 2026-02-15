@@ -73,11 +73,33 @@
       <div class="row two">
         <div>
           <label>Volumen dron</label>
-          <input id="dronVol" type="range" min="0" max="1" step="0.01" value="0.75" />
+          <input id="dronVol" type="range" min="0" max="1" step="0.01" value="0.85" />
         </div>
         <div>
           <label>Volumen guía</label>
-          <input id="pulseVol" type="range" min="0" max="1" step="0.01" value="0.45" />
+          <input id="pulseVol" type="range" min="0" max="1" step="0.01" value="0.55" />
+        </div>
+      </div>
+
+      <div class="row two">
+        <div>
+          <label>Espectro armónico: <span id="harmSpecVal">3</span></label>
+          <input id="harmSpec" type="range" min="1" max="5" step="1" value="3" />
+        </div>
+        <div>
+          <label>Resonancia corporal: <span id="bodyResVal">3</span></label>
+          <input id="bodyRes" type="range" min="1" max="5" step="1" value="3" />
+        </div>
+      </div>
+
+      <div class="row two">
+        <div>
+          <label>Envolvente temporal: <span id="timeEnvVal">3</span></label>
+          <input id="timeEnv" type="range" min="1" max="5" step="1" value="3" />
+        </div>
+        <div>
+          <label>Posición articulatoria: <span id="articulVal">3</span></label>
+          <input id="articul" type="range" min="1" max="5" step="1" value="3" />
         </div>
       </div>
 
