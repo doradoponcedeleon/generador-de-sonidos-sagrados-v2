@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Documentacion de controles - Generador de Sonidos Sagrados</title>
+  <style>
+    :root {
+      --bg: #0e1117;
+      --panel: #161b22;
+      --text: #e6edf3;
+      --muted: #9aa4b2;
+      --accent: #f0c36a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", "Verdana", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 24px 18px 40px;
+    }
+    header {
+      max-width: 980px;
+      margin: 0 auto 16px;
+      padding: 16px;
+      background: var(--panel);
+      border-radius: 12px;
+      border: 1px solid #2a2f3a;
+    }
+    header h1 {
+      margin: 0 0 6px;
+      color: var(--accent);
+    }
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+    section {
+      background: var(--panel);
+      border: 1px solid #2a2f3a;
+      border-radius: 12px;
+      padding: 16px;
+    }
+    h2 {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px 6px;
+      border-bottom: 1px solid #2a2f3a;
+      vertical-align: top;
+    }
+    th { color: var(--muted); font-weight: 600; }
+    .muted { color: var(--muted); }
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #222933;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Documentacion de controles</h1>
+    <div class="muted">Guia de botones, menus y letreros del proyecto.</div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Index (Generador de sonido)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Elemento</th>
+            <th>Significado / Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Tipo de onda</td><td>Selecciona la forma de onda base: seno, cuadrada, triangular o diente de sierra.</td></tr>
+          <tr><td>Amplitud (volumen)</td><td>Controla el volumen general del sonido.</td></tr>
+          <tr><td>Frecuencia (Hz)</td><td>Define el tono principal en Hertz.</td></tr>
+          <tr><td>Armonicos</td><td>Agrega componentes para enriquecer el timbre.</td></tr>
+          <tr><td>Reproducir</td><td>Inicia el audio con los parametros actuales.</td></tr>
+          <tr><td>Detener</td><td>Apaga el audio de forma inmediata.</td></tr>
+          <tr><td>Onda / Estado / Frecuencia / Armonicos</td><td>Letreros de lectura con el estado actual del audio.</td></tr>
+          <tr><td>Ir a Sonidos Sagrados</td><td>Navega a la pagina avanzada de instrumentos.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Sonidos Sagrados (Instrumentos)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Elemento</th>
+            <th>Significado / Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Instrumento</td><td>Selecciona el perfil sonoro: tono puro, flauta, cuenco, gong, dungchen.</td></tr>
+          <tr><td>Intensidad</td><td>Control de volumen general.</td></tr>
+          <tr><td>Frecuencia base</td><td>Tono principal sobre el que se construye el instrumento.</td></tr>
+          <tr><td>Armonicos</td><td>Numero de componentes armonicas disponibles.</td></tr>
+          <tr><td>Reverberacion</td><td>Porcentaje de mezcla con el efecto de reverb.</td></tr>
+          <tr><td>Tiempo de decaimiento</td><td>Duracion del apagado del sonido.</td></tr>
+          <tr><td>Brillo gong</td><td>Realza o suaviza las frecuencias altas del gong.</td></tr>
+          <tr><td>Redondez cuenco</td><td>Suaviza o endurece el balance armonico del cuenco.</td></tr>
+          <tr><td>Filtro armonicos</td><td>Enfasis o atenuacion de armonicos segun el control.</td></tr>
+          <tr><td>Reproducir</td><td>Inicia el sonido con el instrumento seleccionado.</td></tr>
+          <tr><td>Detener</td><td>Detiene el sonido actual.</td></tr>
+          <tr><td>Instrumento / Estado / Frecuencia / Reverb / Decaimiento</td><td>Letreros de lectura del estado actual.</td></tr>
+          <tr><td>Ir a Mantras</td><td>Navega a la pagina de mantras.</td></tr>
+          <tr><td>Volver al generador principal</td><td>Regresa a index.html.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Mantras</h2>
+      <div class="muted">Contenido segun la pagina mantras.html</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Elemento</th>
+            <th>Significado / Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Lista de mantras</td><td>Selecciona una frase o sonido sagrado predefinido.</td></tr>
+          <tr><td>Boton reproducir</td><td>Activa la reproduccion del mantra seleccionado.</td></tr>
+          <tr><td>Boton detener</td><td>Detiene la reproduccion.</td></tr>
+          <tr><td>Letreros de estado</td><td>Indican el mantra activo y el estado del audio.</td></tr>
+        </tbody>
+      </table>
+      <p class="muted"><span class="tag">Nota</span> Ajusta esta seccion si se actualiza mantras.html.</p>
+    </section>
+  </main>
+</body>
+</html>
