@@ -1,0 +1,6 @@
+127.0.0.1 - - [27/Feb/2026 10:17:16] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Feb/2026 10:17:16] code 404, message File not found
+127.0.0.1 - - [27/Feb/2026 10:17:16] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [27/Feb/2026 10:39:21] "GET /sonidos_sagrados.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Feb/2026 10:39:57] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Feb/2026 10:40:00] "GET /sonidos_sagrados.html HTTP/1.1" 200 -
