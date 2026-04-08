@@ -9,6 +9,12 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+<div class="top-nav-links" style="position:fixed; top:18px; left:50%; transform:translateX(-50%); z-index:9999; display:flex; gap:12px; padding:8px 12px; border-radius:18px; background:rgba(10,15,28,0.88); border:1px solid rgba(125,249,255,0.18); box-shadow:0 8px 24px rgba(0,0,0,0.35); backdrop-filter:blur(8px);">
+  <a href="sonidos_sagrados.html" style="text-decoration:none; color:#67e8f9; font-weight:700; padding:10px 18px; border-radius:14px; background:rgba(34,211,238,0.10); border:1px solid rgba(34,211,238,0.18);">🎶 Sonidos</a>
+  <a href="mantras.html" style="text-decoration:none; color:#fbbf24; font-weight:700; padding:10px 18px; border-radius:14px; background:rgba(251,191,36,0.10); border:1px solid rgba(251,191,36,0.18);">🧘 Mantras</a>
+  <a href="sound_generator.html" style="text-decoration:none; color:#a78bfa; font-weight:700; padding:10px 18px; border-radius:14px; background:rgba(167,139,250,0.10); border:1px solid rgba(167,139,250,0.18);">⚙️ Avanzado</a>
+</div>
+
 
 <nav style="position:fixed; top:12px; left:50%; transform:translateX(-50%); z-index:9999; display:flex; gap:8px; flex-wrap:wrap; justify-content:center; background:rgba(10,15,28,0.88); padding:10px 14px; border:1px solid rgba(125,249,255,0.25); border-radius:14px; box-shadow:0 8px 24px rgba(0,0,0,0.35); backdrop-filter:blur(8px);">
 
@@ -16,13 +22,7 @@
 
   <header>
     <h1>Mantras</h1>
-<div class="links-navegacion" style="margin:10px 0 16px 0; display:flex; flex-wrap:wrap; gap:10px;">
-  <a href="index.html" style="text-decoration:none; font-size:14px; color:#7dd3fc; background:rgba(255,255,255,0.06); padding:6px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.12);">Volver al generador principal</a>
-  <a href="sonidos_sagrados.html" style="text-decoration:none; font-size:14px; color:#7dd3fc; background:rgba(255,255,255,0.06); padding:6px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.12);">Ir a Sonidos Sagrados</a>
-  <a href="sound_generator.html" style="text-decoration:none; font-size:14px; color:#7dd3fc; background:rgba(255,255,255,0.06); padding:6px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.12);">Ir a Generador Avanzado</a>
-</div>
-
-    <p class="sub">Generador web (offline) — dron + binaural + guía por sílabas</p>
+<p class="sub">Generador web (offline) — dron + binaural + guía por sílabas</p>
     <p class="sub"><a href="sonidos_sagrados.html" style="color:#9bb7ff; text-decoration:none;">Volver a Sonidos Sagrados</a></p>
   </header>
 
@@ -62,8 +62,7 @@
         </div>
       </div>
 
-      <div id="list" class="list"></div>
-    </section>
+      </section>
 
     <section class="card">
       <h2>Reproductor</h2>
@@ -132,8 +131,7 @@
 
       <div class="syllables">
         <div class="label">Sílabas</div>
-        <div id="syll" class="chips"></div>
-      </div>
+        </div>
 
       <div class="footerNote">
         Si el audio no arranca: toca “Iniciar” otra vez (Android a veces bloquea la primera activación).
@@ -142,8 +140,5 @@
   </main>
 
   <script src="app.js"></script>
-<div style="margin:20px; padding:12px; border:1px solid rgba(255,255,255,0.15); border-radius:12px; background:rgba(255,255,255,0.04);">
-  </div>
-
 </body>
 </html>
