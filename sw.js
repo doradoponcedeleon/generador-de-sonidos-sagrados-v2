@@ -1,4 +1,4 @@
-const CACHE = "sonidos-pwa-v2";
+const CACHE = 'mantras-pwa-v2';
 const ASSETS = [
   "./",
   "./index.html",
